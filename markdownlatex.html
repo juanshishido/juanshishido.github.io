@@ -1,0 +1,256 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Markdown and LaTeX</title>
+
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery.scrolly.min.js"></script>
+        <script src="js/jquery.scrollgress.min.js"></script>
+        <script src="js/skel.min.js"></script>
+        <script src="js/skel-layers.min.js"></script>
+        <script src="js/init.js"></script>
+        <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+
+        <noscript>
+            <link rel="stylesheet" href="css/skel.css" />
+            <link rel="stylesheet" href="css/style.css" />
+            <link rel="stylesheet" href="css/style-wide.css" />
+            <link rel="stylesheet" href="css/style-noscript.css" />
+        </noscript>
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script src="js/smoothscroll.js"></script>
+
+        <link rel="stylesheet" type="text/css" media="screen" href="http://cdnjs.cloudflare.com/ajax/libs/fancybox/1.3.4/jquery.fancybox-1.3.4.css" />
+        <style type="text/css">
+            a.fancybox img {
+                border: none;
+            }
+        </style>
+
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-68428630-1', 'auto');
+            ga('send', 'pageview');
+
+        </script>
+
+    </head>
+
+
+    <body class="index">
+
+       <!-- Header -->
+        <header id="header" style="position: fixed; top: 0px; left: 0px; right: 0px; z-index: 1030;">
+            <h1 id="logo"><a href="index.html">Home</a></h1>
+            <nav id="nav">
+                <ul>
+                    <li><a href="#top" class="smoothScroll">^</a></li>
+                    <li><a href="#contact" class="smoothScroll">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Main -->
+        <article id="main">
+
+            <!-- Emoji -->
+            <div id="top">
+                <section class="wrapper style3 container">
+
+                    <header>
+                        <h2><center>Markdown and LaTeX</center></h2>
+                    </header>
+
+                    <!-- Text -->
+                    <h3>Intro</h3>
+                    <p>
+                        <a href="https://help.github.com/articles/markdown-basics/"
+                        target="_blank">Markdown</a> is an easy-to-use plain
+                        text formatting syntax. Markdown documents are also easy
+                        to read because they don't need tags or other mark up.
+                    </p>
+                    <p>
+                        All of my class notes are written in markdown (.md file
+                        extension). I'm able to format text, add code blocks,
+                        insert links, and more. In some cases, I need to add
+                        mathematical expressions. Rather than write the
+                        <em>entire</em> document in <a href=
+                        "https://www.latex-project.org/" target="_blank">
+                        LaTeX</a>, I only use it as needed within my .md files.
+                        While markdown doesn't natively support LaTeX, <a
+                        href="http://pandoc.org/" target="_blank">pandoc</a>,
+                        "a universal document converter," does. pandoc makes
+                        converting to other file formats easy, too.
+                    </p>
+                    <p>
+                        In this post, I'll go through some markdown examples.
+                        And show how to convert .md files with embedded LaTeX to
+                        PDFs.
+                    </p>
+
+                    <h3>Markdown</h3>
+                    <p>
+                        There are several implementations of markdown. For our
+                        purposes, we'll focus on <a href=
+                        "https://help.github.com/articles/github-flavored-markdown/"
+                        target="_blank">GitHub Flavored Markdown</a>. The syntax
+                        is fairly straight forward.
+                    </p>
+                    <p>
+                        Document headings denote sections and subsections. In
+                        markdown, headings start with a hash symbol
+                        (<code>#</code>). If you're familiar with heading tags
+                        in HTML, you'll see the parallel. Single hash symbols
+                        correspond to a first level headings, two correspond to
+                        second level headings, and so on.
+                    </p>
+                    <p>
+                        To emphasize (italicize) words&mdash;one or many&mdash;use
+                        single asterisks at the beginning and end. For
+                        example, <code>*yes*</code> becomes <em>yes</em>. For
+                        important text (bold), use double asterisks.
+                    </p>
+                    <p>
+                        You can create unordered lists by using either
+                        <code>*</code> or <code>-</code> characters before each
+                        element. Each element must be on its own line. Ordered
+                        lists follow the same format, but use numbers followed
+                        by periods.
+                    </p>
+                    <p>
+                        Backticks (<code>`</code>) are used for code. Inline
+                        code uses single backticks. For a code block, use
+                        triple backticks at the beginning and end of your code.
+                        For example,
+                    </p>
+                    <div style="margin-left: 5%">
+                        ```<br/>
+                        import numpy as np<br/>
+                        np.random.randint(2, size=10)<br/>
+                        ```<br/><br/>
+                    </div>
+                    <p>
+                        becomes
+                    </p>
+<pre>
+import numpy as np
+np.random.randint(2, size=10)
+
+</pre>
+                    <p>
+                        With markdown, you can even create tables using dashes
+                        and pipes. For more information on that, see <a href=
+                        "https://help.github.com/articles/github-flavored-markdown/#tables"
+                        target="_blank">this</a>.
+                    </p>
+                    <p>
+                        To insert links, use both square brackets and
+                        parentheses&mdash;square brackets around the text to be
+                        linked and parentheses around the URL. For example,
+                        <code>[text](url)</code>.
+                    </p>
+
+                    <h3>LaTex</h3>
+                    <p>
+                        There are two modes for inserting mathematical
+                        expressions using LaTeX&mdash;inline and display. This
+                        is similar to the two ways to use markdown for code.
+                    </p>
+                    <p>
+                        For inline mode, you can either use  <code>$...$</code>
+                        or <code>\(...\)</code>. As an example,
+                        <code>\(E = mc^2\)</code> yields \(E = mc^2\).
+                        Alternatively, <code>\begin{math}</code>
+                        and <code>\end{math}</code> can be used.
+                    </p>
+                    <p>
+                        To insert display-mode expressions, use double dollar
+                        signs or square brackets&mdash;e.g.,
+                        <code>\[...]\</code>.
+                    </p>
+                    <p>
+                        For installation on OS X, I recommend installing the
+                        smaller, BasicTeX distribution. Find the .pkg file <a
+                        href="http://www.tug.org/mactex/morepackages.html"
+                        target="_blank">here</a>.
+
+                    <h3>Pandoc</h3>
+                    <p>
+                        pandoc supports converting files in 14 different
+                        formats, including markdown, HTML, and LaTeX, to several
+                        others. For OS X, you can download and install the .pkg
+                        file <a href="https://github.com/jgm/pandoc/releases/tag/1.15.0.6"
+                        target="_blank">here</a>.
+                    </p>
+
+                    <h3>Converting</h3>
+                    <p>
+                        Once you have your markdown file with embedded LaTeX,
+                        converting is simple. At the command line, navigate
+                        to the directory that contains your input file&mdash;that
+                        is, the .md file you want converted. Then, run
+                        the following.
+                    </p>
+<pre>
+$ pandoc -o &#60;outfile&#62;.pdf &#60;infile&#62;.md
+
+</pre>
+                    <p>
+                        This results in a nicely formatted PDF document that
+                        includes mathematical expressions with high-quality
+                        typography.
+                    </p>
+
+                </section>
+            </div>
+        </article>
+
+        <!-- Footer -->
+        <div id="contact">
+            <footer id="footer">
+
+                <h2><strong>Contact</strong></h2>
+                <ul class="icons">
+                    <li><a href="http://www.linkedin.com/in/juanshishido/" class="icon circle fa-linkedin" target="_blank"><span class="label">LinkedIn</span></a></li>
+                    <li><a href="https://twitter.com/juanshishido" class="icon circle fa-twitter" target="_blank"><span class="label">Twitter</span></a></li>
+                    <li><a href="https://github.com/juanshishido" class="icon circle fa-github" target="_blank"><span class="label">Github</span></a></li>
+                </ul>
+
+                <ul class="copyright">
+                    <li><a href="index.html" class="smoothScroll">Juan Shishido</a></li><li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+                </ul>
+
+            </footer>
+        </div>
+
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/fancybox/1.3.4/jquery.fancybox-1.3.4.pack.min.js"></script>
+        <script type="text/javascript">
+            $(function($){
+                var addToAll = false;
+                var gallery = false;
+                var titlePosition = 'over';
+                $(addToAll ? 'img' : 'img.fancybox').each(function(){
+                    var $this = $(this);
+                    var title = $this.attr('title');
+                    var src = $this.attr('data-big') || $this.attr('src');
+                    var a = $('<a href="#" class="fancybox"></a>').attr('href', src).attr('title', title);
+                    $this.wrap(a);
+                });
+                if (gallery)
+                    $('a.fancybox').attr('rel', 'fancyboxgallery');
+                $('a.fancybox').fancybox({
+                    titlePosition: titlePosition
+                });
+            });
+            $.noConflict();
+        </script>
+
+    </body>
+</html>
