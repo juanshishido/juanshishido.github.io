@@ -20,7 +20,7 @@ pre {
     text-align: left;
     margin-left: 5%;
     margin-right: 5%;
-}       
+}
 
 code {
     font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
@@ -33,6 +33,10 @@ code {
     background: #F2F2F2;
     padding-left: 3px;
     padding-right: 3px;
+}
+
+em {
+    font-style: italic;
 }
 
 /* Basic */
