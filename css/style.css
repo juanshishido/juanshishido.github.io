@@ -13,10 +13,10 @@ pre {
     font-size: 90%;
     line-height: 200%;
     overflow: auto;
-    white-space: pre;
+/*    white-space: pre;
     white-space: pre-wrap;
     white-space: -moz-pre-wrap;
-    white-space: -o-pre-wrap;
+    white-space: -o-pre-wrap;*/
     text-align: left;
     margin-left: 5%;
     margin-right: 5%;
