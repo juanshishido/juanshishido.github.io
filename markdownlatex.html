@@ -71,18 +71,24 @@
                     <p>
                         <a href="https://help.github.com/articles/markdown-basics/"
                         target="_blank">Markdown</a> is an easy-to-use plain
-                        text formatting syntax. Markdown documents are also easy
-                        to read because they don't need tags or other mark up.
+                        text formatting syntax. More importantly, markdown
+                        documents are easy to read. They're meant <em>not</em>
+                        to look like they've <a
+                        href="http://daringfireball.net/projects/markdown/syntax#philosophy"
+                        target="_blank">been marked up with tags or formatting
+                        instructions</a>.
                     </p>
                     <p>
-                        All of my class notes are written in markdown (.md file
-                        extension). I'm able to format text, add code blocks,
-                        insert links, and more. In some cases, I need to add
+                        I write my class notes in markdown (.md file extension).
+                        I'm able to format text, add code blocks, insert links,
+                        and more. In some cases, I need to add
                         mathematical expressions. Rather than write the
                         <em>entire</em> document in <a href=
                         "https://www.latex-project.org/" target="_blank">
-                        LaTeX</a>, I only use it as needed within my .md files.
-                        While markdown doesn't natively support LaTeX, <a
+                        LaTeX</a>, which is great for typesetting math, but not
+                        so great for readability, I only use it as
+                        needed <em>within</em> my .md files. While markdown
+                        doesn't natively support LaTeX, <a
                         href="http://pandoc.org/" target="_blank">pandoc</a>,
                         "a universal document converter," does. pandoc makes
                         converting to other file formats easy, too.
@@ -118,9 +124,9 @@
                     <p>
                         You can create unordered lists by using either
                         <code>*</code> or <code>-</code> characters before each
-                        element. Each element must be on its own line. Ordered
-                        lists follow the same format, but use numbers followed
-                        by periods.
+                        element and putting each element on its own line.
+                        Ordered lists follow the same format, but use numbers
+                        followed by periods.
                     </p>
                     <p>
                         Backticks (<code>`</code>) are used for code. Inline
@@ -157,9 +163,11 @@ np.random.randint(2, size=10)
 
                     <h3>LaTex</h3>
                     <p>
-                        There are two modes for inserting mathematical
-                        expressions using LaTeX&mdash;inline and display. This
-                        is similar to the two ways to use markdown for code.
+                        LaTeX is a typesetting system that is used in the
+                        publication of technical and scientific documents. There
+                        are two modes for inserting mathematical expressions
+                        using LaTeX&mdash;inline and display. This is similar to
+                        the two ways to use markdown for code.
                     </p>
                     <p>
                         For inline mode, you can either use  <code>$...$</code>
@@ -201,9 +209,23 @@ $ pandoc -o &#60;outfile&#62;.pdf &#60;infile&#62;.md
 
 </pre>
                     <p>
-                        This results in a nicely formatted PDF document that
-                        includes mathematical expressions with high-quality
-                        typography.
+                        Mathematical expressions with high-quality typography
+                        achieved!
+                    </p>
+
+                    <h3>Final Thoughts</h3>
+                    <p>
+                        With pandoc, you can add additional functionality to
+                        your markdown files. Directly insert mathematical
+                        expressions using LaTeX's syntax into your document.
+                        Then, use pandoc to render the formatted text and output
+                        a PDF.
+                    </p>
+                    <p>
+                        Special thanks to <a
+                        href="http://kesdev.com/you-got-latex-in-my-markdown/"
+                        target="_blank">Matthew Lewis</a> for his excellent post
+                        on the subject.
                     </p>
 
                 </section>
