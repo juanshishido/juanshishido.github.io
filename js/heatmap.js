@@ -1,5 +1,5 @@
 var margin = {top: 19.5, right: 19.5, bottom: 19.5, left: 39.5},
-    width = 1000 - (2 * margin.right) - 20,
+    width = 100 - (2 * margin.right) - 20,
     height = 75 - margin.top - margin.bottom;
 
 var svg = d3.select("#slider-chart")
