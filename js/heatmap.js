@@ -26,7 +26,7 @@ d3.json("../data/heatmap.json", function(json) {
     var calendar = new CalHeatMap();
     calendar.init({
         data : heatmapData,
-        start: new Date(1984, 7),
+        start: new Date(1984, 8),
         domain : "month",
         subDomain : "day",
         range : 13,

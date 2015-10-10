@@ -201,7 +201,7 @@ d3.csv("./data/scatter.csv", function(data) {
             var calendar = new CalHeatMap();
             calendar.init({
                 data : heatmapData,
-                start: new Date(year, 7),
+                start: new Date(year, 8),
                 domain : "month",
                 subDomain : "day",
                 range : 13,
