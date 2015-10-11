@@ -52,7 +52,7 @@ var scatterTip = d3.tip()
     .attr('class', 'd3-tip')
     .offset([-10, 0])
     .html(function(d) {
-        return "$" + d[colPositions["wager"]] + " (" + Math.round(d[colPositions["wager_pct"]] * 100) + "%) wager on<br/>" + moment(d[colPositions["date"]]).format("MMM DD, YYYY");
+        return "$" + numberWithCommas(d[colPositions["wager"]]) + " (" + Math.round(d[colPositions["wager_pct"]] * 100) + "%) wager on<br/>" + moment(d[colPositions["date"]]).format("MMM DD, YYYY");
     });
 
 // Load
@@ -432,3 +432,9 @@ d3.csv("./data/scatter.csv", function(data) {
     });
 
 });
+
+function numberWithCommas(x) {
+    var parts = x.toString().split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parts.join(".");
+}
