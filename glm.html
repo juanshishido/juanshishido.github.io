@@ -83,12 +83,13 @@
                         need to introduce an additional concept&mdash;errors.
                     </p>
                     <p>
-                        When we fit a line to our data, there will be points
-                        above and below it. The differences between these
-                        points and the line is referred to as the "error."
-                        To capture this, we add a new term to our equation.
+                        Relative to the <em>true</em> line that describes \(x\)
+                        and \(y\), the observed data will be distributed both
+                        above and below it. The differences between these points
+                        and the line is referred to as the "error." To capture
+                        this, we add a new term to our equation.
 
-                        $$y_i = \beta_0 + \beta_1 x_i + \epsilon_i$$
+                        \[y_i = \beta_0 + \beta_1 x_i + \epsilon_i\]
 
                         In this form, in which the terms have been slightly
                         reordered from the equation above, \(\beta_0\)
@@ -97,33 +98,79 @@
                         Notice that the \(y\), \(x\), and \(\epsilon\) terms all
                         have subscripts, but the \(\beta\)s do not. This implies
                         that there is a <em>single</em> \(y\)-intercept and
-                        slope.
+                        slope&mdash;the true line.
                     </p>
                     <p>
                         While we have specified the relationship we believe the
-                        data have&mdash;linear in this case&mdash;the model is
-                        not <em>fully specified</em>. For this, we must be
-                        explicit about our assumptions of \(\epsilon\). We can,
-                        for example, assume that \(\epsilon\) are independent
-                        and identically distributed with a zero mean and
-                        \(\sigma^2\) variance.
+                        data have, the model is not <em>fully specified</em>.
+                        For this, we must be explicit about our assumptions of
+                        \(\epsilon\). We can, for example, assume that
+                        \(\epsilon\) are independent and identically distributed
+                        with a zero mean and \(\sigma^2\) variance.
+                    </p>
+                    <p>
+                        Together, the equation and the assumptions about
+                        \(\epsilon\) describe the model.
                     </p>
                     <h3>Matrix Form</h3>
                     <p>
                         It is useful to specify our model in matrix form. We can
                         think of \(y_i\), \(x_i\), and \(\epsilon_i\) as being
                         vectors with \(n\) values, where \(i \in 1,\ldots,n\).
-                        We can write \(y_i\) as \(\vec{y}\). Using this
-                        notation, the \(\beta\) values are scalars. However,
-                        with what we've described thus far, \(\beta_0\) doesn't
-                        have a vector of values to be multiplied with. So, we
-                        add a vector of ones of length \(n\).
+                        \(y_i\), for example, can be written as \(\vec{y}\). Our
+                        equation becomes:
+                    </p>
+                    <p>
+                        \[\vec{y} = \beta_0 + \beta_1 \vec{x} + \vec{\epsilon}\]
+                    </p>
+                    <p>
+                        Using this notation, the \(\beta\) values are scalars.
+                        However, with what we've described thus far, \(\beta_0\)
+                        doesn't have a vector of values to be multiplied with.
+                        So, we add a vector of ones of length \(n\).
                     </p>
                     <p>
                         Our <em>system</em> of \(n\) equations can be
-                        represented as follows.
-
-                        \begin{split}\left[\begin{matrix}\epsilon_{1}\\ \vdots\\ \epsilon_{n}\end{matrix}\right]\end{split}
+                        represented as the following matrix addition equation.
+                    </p>
+                    <p>
+                        \begin{split}
+                            \left[\begin{matrix}y_1\\ \vdots\\ y_n\end{matrix}\right] =
+                            \beta_0 \left[\begin{matrix}1\\ \vdots\\ 1\end{matrix}\right] +
+                            \beta_1 \left[\begin{matrix}x_1\\ \vdots\\ x_n\end{matrix}\right] +
+                            \left[\begin{matrix}\epsilon_1\\ \vdots\\ \epsilon_n\end{matrix}\right]
+                        \end{split}
+                    </p>
+                    <p>
+                        We can restate this in terms of matrix multiplication.
+                    </p>
+                    <p>
+                        \begin{split}
+                            \left[\begin{matrix}y_1\\ \vdots\\ y_n\end{matrix}\right] =
+                            \left[\begin{matrix}1 & x_1\\ \vdots & \vdots\\ 1 & x_n\end{matrix}\right]
+                            \left[\begin{matrix}\beta_0\\ \beta_1\end{matrix}\right] +
+                            \left[\begin{matrix}\epsilon_1\\ \vdots\\ \epsilon_n\end{matrix}\right]
+                        \end{split}
+                    </p>
+                    <p>
+                        Here, we've simply combined the vector of ones and
+                        \(x_i\) into a matrix, which we refer to as \(X\), and
+                        combined the \(\beta\)s into a vector, which we'll call
+                        \(\vec{\beta}\). In this example, \(X\) is an \(m\) by
+                        \(p\) matrix, where \(p = 2\), and \(\vec{\beta}\)
+                        is a vector of length \(2\). Thus, we're able to
+                        multiply both terms.
+                    </p>
+                    <p>
+                        This can be rewritten as follows.
+                    </p>
+                    <p>
+                        \[\vec{y} = X\vec{\beta} + \vec{\epsilon} \]
+                    </p>
+                    <p>
+                        What makes this formulation powerful is that we can add
+                        additional \(x\) variables and associated \(\beta\)
+                        coefficients.
                     </p>
 
                 </section>
