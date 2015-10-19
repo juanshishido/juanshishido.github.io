@@ -1,0 +1,176 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>General Linear Models</title>
+
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery.scrolly.min.js"></script>
+        <script src="js/jquery.scrollgress.min.js"></script>
+        <script src="js/skel.min.js"></script>
+        <script src="js/skel-layers.min.js"></script>
+        <script src="js/init.js"></script>
+        <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+
+        <noscript>
+            <link rel="stylesheet" href="css/skel.css" />
+            <link rel="stylesheet" href="css/style.css" />
+            <link rel="stylesheet" href="css/style-wide.css" />
+            <link rel="stylesheet" href="css/style-noscript.css" />
+        </noscript>
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script src="js/smoothscroll.js"></script>
+
+        <link rel="stylesheet" type="text/css" media="screen" href="http://cdnjs.cloudflare.com/ajax/libs/fancybox/1.3.4/jquery.fancybox-1.3.4.css" />
+        <style type="text/css">
+            a.fancybox img {
+                border: none;
+            }
+        </style>
+
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-68428630-1', 'auto');
+            ga('send', 'pageview');
+
+        </script>
+
+    </head>
+
+
+    <body class="index">
+
+       <!-- Header -->
+        <header id="header" style="position: fixed; top: 0px; left: 0px; right: 0px; z-index: 1030;">
+            <h1 id="logo"><a href="index.html">Home</a></h1>
+            <nav id="nav">
+                <ul>
+                    <li><a href="#top" class="smoothScroll">^</a></li>
+                    <li><a href="#contact" class="smoothScroll">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Main -->
+        <article id="main">
+
+            <!-- Emoji -->
+            <div id="top">
+                <section class="wrapper style3 container">
+
+                    <header>
+                        <h2><center>General Linear Models</center></h2>
+                    </header>
+
+                    <!-- Text -->
+                    <h3>Simple Linear Regression</h3>
+                    <p>
+                        A line can be described by the equation \(y = mx + b\),
+                        where \(b\) is the \(y\)-intercept and \(m\) is the
+                        slope. Simple linear regression uses this idea to
+                        describe the <em>relationship</em> between two
+                        variables. The process uses the data to find the line
+                        that "best" fits it.
+                    </p>
+                    <p>
+                        Because each observation has its own \(x\) and \(y\)
+                        value, we use subscripts to denote them. In addition,
+                        unless the data form a single straight line, we will
+                        need to introduce an additional concept&mdash;errors.
+                    </p>
+                    <p>
+                        When we fit a line to our data, there will be points
+                        above and below it. The differences between these
+                        points and the line is referred to as the "error."
+                        To capture this, we add a new term to our equation.
+
+                        $$y_i = \beta_0 + \beta_1 x_i + \epsilon_i$$
+
+                        In this form, in which the terms have been slightly
+                        reordered from the equation above, \(\beta_0\)
+                        represents the \(y\)-intercept, \(\beta_1\) represents
+                        the slope, and \(\epsilon_i\) represents the error.
+                        Notice that the \(y\), \(x\), and \(\epsilon\) terms all
+                        have subscripts, but the \(\beta\)s do not. This implies
+                        that there is a <em>single</em> \(y\)-intercept and
+                        slope.
+                    </p>
+                    <p>
+                        While we have specified the relationship we believe the
+                        data have&mdash;linear in this case&mdash;the model is
+                        not <em>fully specified</em>. For this, we must be
+                        explicit about our assumptions of \(\epsilon\). We can,
+                        for example, assume that \(\epsilon\) are independent
+                        and identically distributed with a zero mean and
+                        \(\sigma^2\) variance.
+                    </p>
+                    <h3>Matrix Form</h3>
+                    <p>
+                        It is useful to specify our model in matrix form. We can
+                        think of \(y_i\), \(x_i\), and \(\epsilon_i\) as being
+                        vectors with \(n\) values, where \(i \in 1,\ldots,n\).
+                        We can write \(y_i\) as \(\vec{y}\). Using this
+                        notation, the \(\beta\) values are scalars. However,
+                        with what we've described thus far, \(\beta_0\) doesn't
+                        have a vector of values to be multiplied with. So, we
+                        add a vector of ones of length \(n\).
+                    </p>
+                    <p>
+                        Our <em>system</em> of \(n\) equations can be
+                        represented as follows.
+
+                        \begin{split}\left[\begin{matrix}\epsilon_{1}\\ \vdots\\ \epsilon_{n}\end{matrix}\right]\end{split}
+                    </p>
+
+                </section>
+            </div>
+        </article>
+
+        <!-- Footer -->
+        <div id="contact">
+            <footer id="footer">
+
+                <h2><strong>Contact</strong></h2>
+                <ul class="icons">
+                    <li><a href="http://www.linkedin.com/in/juanshishido/" class="icon circle fa-linkedin" target="_blank"><span class="label">LinkedIn</span></a></li>
+                    <li><a href="https://twitter.com/juanshishido" class="icon circle fa-twitter" target="_blank"><span class="label">Twitter</span></a></li>
+                    <li><a href="https://github.com/juanshishido" class="icon circle fa-github" target="_blank"><span class="label">Github</span></a></li>
+                </ul>
+
+                <ul class="copyright">
+                    <li><a href="index.html" class="smoothScroll">Juan Shishido</a></li><li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+                </ul>
+
+            </footer>
+        </div>
+
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/fancybox/1.3.4/jquery.fancybox-1.3.4.pack.min.js"></script>
+        <script type="text/javascript">
+            $(function($){
+                var addToAll = false;
+                var gallery = false;
+                var titlePosition = 'over';
+                $(addToAll ? 'img' : 'img.fancybox').each(function(){
+                    var $this = $(this);
+                    var title = $this.attr('title');
+                    var src = $this.attr('data-big') || $this.attr('src');
+                    var a = $('<a href="#" class="fancybox"></a>').attr('href', src).attr('title', title);
+                    $this.wrap(a);
+                });
+                if (gallery)
+                    $('a.fancybox').attr('rel', 'fancyboxgallery');
+                $('a.fancybox').fancybox({
+                    titlePosition: titlePosition
+                });
+            });
+            $.noConflict();
+        </script>
+
+    </body>
+</html>
