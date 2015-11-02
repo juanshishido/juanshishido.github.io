@@ -73,8 +73,9 @@
                         where \(b\) is the \(y\)-intercept and \(m\) is the
                         slope. Simple linear regression uses this idea to
                         describe the <em>relationship</em> between two
-                        variables. The process uses the data to find the line
-                        that "best" fits it.
+                        variables&mdash;one dependent, the \(y\), and one
+                        explanatory, the \(x\). The process uses the data to
+                        find the line that "best" fits it.
                     </p>
                     <p>
                         Because each observation has its own \(x\) and \(y\)
@@ -154,12 +155,15 @@
                     </p>
                     <p>
                         Here, we've simply combined the vector of ones and
-                        \(x_i\) into a matrix, which we refer to as \(X\), and
-                        combined the \(\beta\)s into a vector, which we'll call
-                        \(\vec{\beta}\). In this example, \(X\) is an \(m\) by
-                        \(p\) matrix, where \(p = 2\), and \(\vec{\beta}\)
-                        is a vector of length \(2\). Thus, we're able to
-                        multiply both terms.
+                        \(x_i\) into a matrix, which we refer to as \(X\),
+                        called the <em>design matrix</em>, and
+                        combined the \(\beta\)s into a column vector, which
+                        we refer to as \(\vec{\beta}\), called the <em>parameter
+                        vector</em>. In this example, \(X\) is an
+                        \(n \times p\) matrix and \(\vec{\beta}\) can be thought
+                        of as a \(p \times 1\) matrix. Because the number of
+                        columns in \(X\) equals the number of rows in
+                        \(\vec{\beta}\), they can be multiplied.
                     </p>
                     <p>
                         This can be rewritten as follows.
@@ -167,10 +171,25 @@
                     <p>
                         \[\vec{y} = X\vec{\beta} + \vec{\epsilon} \]
                     </p>
+                    <h3>Multiple Regression</h3>
                     <p>
-                        What makes this formulation powerful is that we can add
-                        additional \(x\) variables and associated \(\beta\)
-                        coefficients.
+                        Often, outcomes for our variable of interest, \(y_i\),
+                        depend on two or more variables. This is referred to as
+                        a multiple linear regression model, which, for the case
+                        of two variables, can be written as:
+                    </p>
+                    <p>
+                        \[y_i = \beta_0 + \beta_1 x_{1i} + \beta_2 x_{2i} + \epsilon_i\]
+                    </p>
+                    <p>
+                        This model, as any model with an arbitrary number of
+                        parameters, can still be expressed as:
+                    </p>
+                    <p>
+                        \[\vec{y} = X\vec{\beta} + \vec{\epsilon} \]
+                    </p>
+                        For each parameter, \(p\), add a column to \(X\) and an
+                        element to \(\vec{\beta}\).
                     </p>
 
                 </section>
