@@ -74,12 +74,16 @@
                         slope. Simple linear regression uses this idea to
                         describe the <em>relationship</em> between two
                         variables&mdash;one dependent, the \(y\), and one
-                        explanatory, the \(x\). The process uses the data to
-                        find the line that "best" fits it.
+                        independent, the \(x\). Dependent variables are also
+                        sometimes referred to as "response variables,"
+                        "regressands," or "targets." The corresponding terms for
+                        independent variables are "predictor variables,"
+                        "regressors," or "features." In regression, the data is
+                        used to find the line that "best" it.
                     </p>
                     <p>
                         Because each observation has its own \(x\) and \(y\)
-                        value, we use subscripts to denote them. In addition,
+                        values, we use subscripts to denote them. In addition,
                         unless the data form a single straight line, we will
                         need to introduce an additional concept&mdash;errors.
                     </p>
@@ -92,14 +96,14 @@
 
                         \[y_i = \beta_0 + \beta_1 x_i + \epsilon_i\]
 
-                        In this form, in which the terms have been slightly
-                        reordered from the equation above, \(\beta_0\)
-                        represents the \(y\)-intercept, \(\beta_1\) represents
-                        the slope, and \(\epsilon_i\) represents the error.
-                        Notice that the \(y\), \(x\), and \(\epsilon\) terms all
-                        have subscripts, but the \(\beta\)s do not. This implies
-                        that there is a <em>single</em> \(y\)-intercept and
-                        slope&mdash;the true line.
+                        In this specification&mdash;called the scalar
+                        form&mdash;\(\beta_0\) represents the \(y\)-intercept,
+                        \(\beta_1\) represents the slope, and \(\epsilon_i\)
+                        represents the error. Notice that the \(y\), \(x\), and
+                        \(\epsilon\) terms all have subscripts, but the
+                        \(\beta\)s do not. This implies that there is a
+                        <em>single</em> \(y\)-intercept and slope&mdash;the true
+                        line.
                     </p>
                     <p>
                         While we have specified the relationship we believe the
@@ -115,11 +119,23 @@
                     </p>
                     <h3>Matrix Form</h3>
                     <p>
-                        It is useful to specify our model in matrix form. We can
-                        think of \(y_i\), \(x_i\), and \(\epsilon_i\) as being
-                        vectors with \(n\) values, where \(i \in 1,\ldots,n\).
-                        \(y_i\), for example, can be written as \(\vec{y}\). Our
-                        equation becomes:
+                        The scalar form allows us to be explicit and verbose
+                        about the regressors included in the model. However, it
+                        is often more efficient to write the equation in matrix
+                        form. To motivate the reasons why, consider the case
+                        where, for our equation above, \(i \in 1,\ldots,n\).
+                    </p>
+                    <p>
+                        \[y_1 = \beta_0 + \beta_1 x_1 + \epsilon_1\]
+                        \[y_2 = \beta_0 + \beta_1 x_2 + \epsilon_2\]
+                        \[ \vdots \]
+                        \[y_n = \beta_0 + \beta_1 x_n + \epsilon_n\]
+                    </p>
+                    <p>
+                        It becomes inefficient to out \(n\) equations. Instead,
+                        we can think of \(y_i\), \(x_i\), and \(\epsilon_i\) as
+                        being vectors with \(n\) values. \(y_i\), for example,
+                        can be written as \(\vec{y}\). Our equation becomes:
                     </p>
                     <p>
                         \[\vec{y} = \beta_0 + \beta_1 \vec{x} + \vec{\epsilon}\]
@@ -174,16 +190,18 @@
                     <h3>Multiple Regression</h3>
                     <p>
                         Often, outcomes for our variable of interest, \(y_i\),
-                        depend on two or more variables. This is referred to as
+                        depend on two or more predictors. This is referred to as
                         a multiple linear regression model, which, for the case
-                        of two variables, can be written as:
+                        of two variables, can be written as (in scalar form):
                     </p>
                     <p>
                         \[y_i = \beta_0 + \beta_1 x_{1i} + \beta_2 x_{2i} + \epsilon_i\]
                     </p>
                     <p>
-                        This model, as any model with an arbitrary number of
-                        parameters, can still be expressed as:
+                        The scalar form gets unwiedly as the number of
+                        independent variables increases. This model, as well as
+                        any model with an arbitrary number of parameters, can
+                        still be expressed in matrix form.
                     </p>
                     <p>
                         \[\vec{y} = X\vec{\beta} + \vec{\epsilon} \]
