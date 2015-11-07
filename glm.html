@@ -21,7 +21,8 @@
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
         <script src="js/smoothscroll.js"></script>
 
-        <link rel="stylesheet" type="text/css" media="screen" href="http://cdnjs.cloudflare.com/ajax/libs/fancybox/1.3.4/jquery.fancybox-1.3.4.css" />
+        <link rel="stylesheet" type="text/css" media="screen"
+        href="http://cdnjs.cloudflare.com/ajax/libs/fancybox/1.3.4/jquery.fancybox-1.3.4.css" />
         <style type="text/css">
             a.fancybox img {
                 border: none;
@@ -78,44 +79,39 @@
                         sometimes referred to as "response variables,"
                         "regressands," or "targets." The corresponding terms for
                         independent variables are "predictor variables,"
-                        "regressors," or "features." In regression, the data is
-                        used to find the line that "best" it.
+                        "regressors," or "features."
                     </p>
                     <p>
-                        Because each observation has its own \(x\) and \(y\)
-                        values, we use subscripts to denote them. In addition,
-                        unless the data form a single straight line, we will
-                        need to introduce an additional concept&mdash;errors.
+                        The objective is to specify a model that explains \(y\)
+                        in terms of \(x\) in the <em>population</em> of
+                        interest. A simple model can be specified as follows.
                     </p>
                     <p>
-                        Relative to the <em>true</em> line that describes \(x\)
-                        and \(y\), the observed data will be distributed both
-                        above and below it. The differences between these points
-                        and the line is referred to as the "error." To capture
-                        this, we add a new term to our equation.
-
-                        \[y_i = \beta_0 + \beta_1 x_i + \epsilon_i\]
-
+                        \[y = \beta_0 + \beta_1 x + \epsilon\]
+                    </p>
+                    <p>
                         In this specification&mdash;called the scalar
-                        form&mdash;\(\beta_0\) represents the \(y\)-intercept,
-                        \(\beta_1\) represents the slope, and \(\epsilon_i\)
-                        represents the error. Notice that the \(y\), \(x\), and
-                        \(\epsilon\) terms all have subscripts, but the
-                        \(\beta\)s do not. This implies that there is a
-                        <em>single</em> \(y\)-intercept and slope&mdash;the true
-                        line.
+                        form&mdash;\(\beta_0\) represents the \(y\)-intercept
+                        and \(\beta_1\) represents the slope. The \(\epsilon\),
+                        which is called the error term, represents
+                        <em>other</em> factors that affect \(y\).
                     </p>
                     <p>
-                        While we have specified the relationship we believe the
-                        data have, the model is not <em>fully specified</em>.
-                        For this, we must be explicit about our assumptions of
-                        \(\epsilon\). We can, for example, assume that
-                        \(\epsilon\) are independent and identically distributed
-                        with a zero mean and \(\sigma^2\) variance.
+                        In regression, to estimate the \(\beta\)s, we need a
+                        sample from the population. We use this data to find the
+                        line that "best" fits it. Because each observation in
+                        our sample has its own values, we use subscripts to
+                        denote them.
                     </p>
                     <p>
-                        Together, the equation and the assumptions about
-                        \(\epsilon\) describe the model.
+                        \[y_i = \beta_0 + \beta_1 x_i + \epsilon_i\]
+                    </p>
+                    <p>
+                        Notice that the \(y\), \(x\), and \(\epsilon\) terms
+                        have subscripts, but the \(\beta\)s do not. This implies
+                        that there is a <em>single</em> \(y\)-intercept and
+                        slope&mdash;the one from the population equation that
+                        represents the "true" line.
                     </p>
                     <h3>Matrix Form</h3>
                     <p>
@@ -134,7 +130,7 @@
                     <p>
                         It becomes inefficient to out \(n\) equations. Instead,
                         we can think of \(y_i\), \(x_i\), and \(\epsilon_i\) as
-                        being vectors with \(n\) values. \(y_i\), for example,
+                        being vectors with \(n\) values. For example, \(y_i\)
                         can be written as \(\vec{y}\). Our equation becomes:
                     </p>
                     <p>
@@ -190,24 +186,104 @@
                     <h3>Multiple Regression</h3>
                     <p>
                         Often, outcomes for our variable of interest, \(y_i\),
-                        depend on two or more predictors. This is referred to as
-                        a multiple linear regression model, which, for the case
-                        of two variables, can be written as (in scalar form):
+                        depend on two or more predictors. When specifying it
+                        this way, it is referred to as a <em>multiple</em>
+                        linear regression model, which, for the case of two
+                        variables, can be written as (in scalar form):
                     </p>
                     <p>
                         \[y_i = \beta_0 + \beta_1 x_{1i} + \beta_2 x_{2i} + \epsilon_i\]
                     </p>
                     <p>
-                        The scalar form gets unwiedly as the number of
-                        independent variables increases. This model, as well as
-                        any model with an arbitrary number of parameters, can
-                        still be expressed in matrix form.
+                        As you might imagine, the scalar form gets unwiedly as
+                        the number of independent variables increases. This
+                        model, as well as those with an arbitrary number of
+                        parameters, can still be expressed in matrix form.
                     </p>
                     <p>
-                        \[\vec{y} = X\vec{\beta} + \vec{\epsilon} \]
+                        \[\vec{y} = X\vec{\beta} + \vec{\epsilon}\]
                     </p>
                         For each parameter, \(p\), add a column to \(X\) and an
                         element to \(\vec{\beta}\).
+                    </p>
+                    <h3>Solving</h3>
+                    <p>
+                        There are several ways to solve for the "best" line. To
+                        illustrate this, we'll go back to the simple linear
+                        regression model. Let's suppose we'd like to create a
+                        regression line for the data shown in the following
+                        plot, created using the code below. (Note: the complete
+                        set of commands used to make this plot can be found
+                        <a href="https://gist.github.com/juanshishido/e14209aaa26b96b756ee#file-slr_data-py"
+                        target="_blank">here</a>.)
+                    </p>
+<pre>
+import numpy as np
+import matplotlib.pyplot as plt
+
+np.random.seed(1868)
+x = np.random.normal(0, 1, 20)
+y = np.array([np.random.normal(v, 0.5) for v in x])
+
+plt.scatter(x, y, s=35, alpha=0.85, color='#328E82')
+</pre>
+                    <p>
+                        <center>
+                            <img src="images/slr-data.png" class="fancybox"
+                            style="border:1px solid lightgray; width:90%;">
+                        </center>
+                    </p>
+                    <p>
+                        The "best" line is usually thought of as the one that
+                        <em>minimizes</em> the distance between it and the data
+                        points. Typically, the distance that is minimized is the
+                        sum of the squared residuals. Residuals are the
+                        difference between each \(y_i\) and its estimated (or
+                        fitted) value, \(\hat{y_i}\). In vector notation,
+                        these can be written as \(\vec{y}\) and
+                        \(\hat{\vec{y}}\), respectively. The idea is to find
+                        values of \(\beta_0\) and \(\beta_1\) that minimize:
+                        \[ \sum_{i=1}^n (y_i - \hat{y_i})^2\]
+                    </p>
+                    <p>
+                        A side note before we continue. The terms "errors" and
+                        "residuals" are often used as synonyms, unfortunately.
+                        In reality, they are quite distinct. Errors are a
+                        population-level concept and are unobservable.
+                        Residuals, on the other hand, are sample-specific and
+                        are computed from the data when we estimate the
+                        \(\beta\)s.
+                    </p>
+                    <p>
+                        Back to estimating our \(\beta\)s. In the case of simple
+                        linear regression, the estimated slope is
+                        \[ \hat{\beta_1} = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^n (x_i - \bar{x})^2} = \frac{cov(x_i, y_i)}{var(x_i)}\]
+                        and the estimated \(y\)-intercept is
+                        \[ \hat{\beta_0} = \bar{y} - \hat{\beta_1}\bar{x} \]
+                    </p>
+                    <p>
+                        Using NumPy, we can calculate these values as follows.
+                    </p>
+<pre>
+b1 = np.cov(x, y, bias=1)[0,1] / np.var(x)
+b0 = y.mean() - b1*x.mean()
+
+</pre>
+                    <p>
+                        Which result in the following regression line.
+                    </p>
+                    <p>
+                        <center>
+                            <img src="images/slr-line.png" class="fancybox"
+                            style="border:1px solid lightgray; width:90%;">
+                        </center>
+                    </p>
+                    <p>
+                        To solve for \(\vec{\beta}\) in the case multiple linear
+                        regression....
+                    </p>
+                    <p>
+                        \[ \hat{\vec{\beta}} = (X^T X)^{-1} X^T \vec{y}\]
                     </p>
 
                 </section>
@@ -220,21 +296,41 @@
 
                 <h2><strong>Contact</strong></h2>
                 <ul class="icons">
-                    <li><a href="http://www.linkedin.com/in/juanshishido/" class="icon circle fa-linkedin" target="_blank"><span class="label">LinkedIn</span></a></li>
-                    <li><a href="https://twitter.com/juanshishido" class="icon circle fa-twitter" target="_blank"><span class="label">Twitter</span></a></li>
-                    <li><a href="https://github.com/juanshishido" class="icon circle fa-github" target="_blank"><span class="label">Github</span></a></li>
+                    <li>
+                        <a href="http://www.linkedin.com/in/juanshishido/"
+                        class="icon circle fa-linkedin" target="_blank">
+                        <span class="label">LinkedIn</span></a>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/juanshishido"
+                        class="icon circle fa-twitter" target="_blank">
+                        <span class="label">Twitter</span></a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/juanshishido"
+                        class="icon circle fa-github" target="_blank">
+                        <span class="label">Github</span></a>
+                    </li>
                 </ul>
 
                 <ul class="copyright">
-                    <li><a href="index.html" class="smoothScroll">Juan Shishido</a></li><li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+                    <li>
+                        <a href="index.html" class="smoothScroll">Juan Shishido</a>
+                    </li>
+                    <li>Design:
+                        <a href="http://html5up.net" target="_blank">HTML5 UP</a>
+                    </li>
                 </ul>
 
             </footer>
         </div>
 
-        <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-        <script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/fancybox/1.3.4/jquery.fancybox-1.3.4.pack.min.js"></script>
+        <script type="text/javascript"
+        src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript"
+        src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script type="text/javascript"
+        src="http://cdnjs.cloudflare.com/ajax/libs/fancybox/1.3.4/jquery.fancybox-1.3.4.pack.min.js"></script>
         <script type="text/javascript">
             $(function($){
                 var addToAll = false;
