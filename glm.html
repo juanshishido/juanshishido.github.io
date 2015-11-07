@@ -94,14 +94,21 @@
                         form&mdash;\(\beta_0\) represents the \(y\)-intercept
                         and \(\beta_1\) represents the slope. The \(\epsilon\),
                         which is called the error term, represents
-                        <em>other</em> factors that affect \(y\).
+                        <em>other</em> factors that affect \(y\). If the error
+                        term is excluded, the implication is that the
+                        relationship is exact or <em>deterministic</em>.
+                        A <em>stochastic</em> relationship, on the other hand,
+                        is implied when the error term is included. For most, if
+                        not all, applications of regression, the relationship is
+                        stochastic.
                     </p>
                     <p>
-                        In regression, to estimate the \(\beta\)s, we need a
-                        sample from the population. We use this data to find the
-                        line that "best" fits it. Because each observation in
-                        our sample has its own values, we use subscripts to
-                        denote them.
+                        The actual \(\beta\) values in the population are
+                        unknown. However, they can be estimated using
+                        data&mdash;preferrably a random sample from the
+                        population. We use this data to find the line that
+                        "best" fits it. Because each observation in our sample
+                        has its own values, we use subscripts to denote them.
                     </p>
                     <p>
                         \[y_i = \beta_0 + \beta_1 x_i + \epsilon_i\]
@@ -185,7 +192,7 @@
                     </p>
                     <h3>Multiple Regression</h3>
                     <p>
-                        Often, outcomes for our variable of interest, \(y_i\),
+                        Often, outcomes for our variable of interest, \(y\),
                         depend on two or more predictors. When specifying it
                         this way, it is referred to as a <em>multiple</em>
                         linear regression model, which, for the case of two
