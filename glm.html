@@ -68,6 +68,11 @@
                     </header>
 
                     <!-- Text -->
+                    <p>
+                        A <em>general linear model</em> describes a dependent
+                        variable in terms of a linear combination of independent
+                        variables and an error term.
+                    </p>
                     <h3>Simple Linear Regression</h3>
                     <p>
                         A line can be described by the equation \(y = mx + b\),
@@ -127,7 +132,7 @@
                     <p>
                         Often, outcomes for our variable of interest, \(y\),
                         depend on two or more predictors. This is referred to as
-                        <em>multiple</em> linear regression model, which, for
+                        a <em>multiple</em> linear regression model, which, for
                         the case of two variables, can be written as:
                     </p>
                     <p>
@@ -150,7 +155,7 @@
                     <p>
                         \[y_1 = \beta_0 + \beta_1 x_{11} + \beta_2 x_{21} + \epsilon_1\]
                         \[y_2 = \beta_0 + \beta_1 x_{12} + \beta_2 x_{22} + \epsilon_2\]
-                        \[ \vdots \]
+                        \[\vdots\]
                         \[y_n = \beta_0 + \beta_1 x_{1n} + \beta_2 x_{2n} + \epsilon_n\]
                     </p>
                     <p>
@@ -159,7 +164,7 @@
                         included a vector of ones of length \(n\), which we'll
                         call \(x_0\), that we multiply with \(\beta_0\).
                     </p>
-                    <p>
+                    <p style="font-size: 85%">
                         \begin{split}
                             \left[\begin{matrix}y_1\\ \vdots\\ y_n\end{matrix}\right] =
                             \beta_0 \left[\begin{matrix}1 \\ \vdots\\ 1\end{matrix}\right] +
@@ -171,10 +176,16 @@
                     <p>
                         This can be restated in terms of matrix multiplication.
                     </p>
-                    <p>
+                    <p style="font-size: 85%">
                         \begin{split}
                             \left[\begin{matrix}y_1\\ \vdots\\ y_n\end{matrix}\right] =
-                            \left[\begin{matrix}1 & x_{11} & x_{21}\\ \vdots & \vdots & \vdots \\ 1 & x_{1n} & x_{2n}\end{matrix}\right]
+                            \left[
+                                \begin{matrix}
+                                    1 & x_{11} & x_{21}\\
+                                    \vdots & \vdots & \vdots\\
+                                    1 & x_{1n} & x_{2n}
+                                \end{matrix}
+                            \right]
                             \left[\begin{matrix}\beta_0\\ \beta_1\\ \beta_2\end{matrix}\right] +
                             \left[\begin{matrix}\epsilon_1\\ \vdots\\ \epsilon_n\end{matrix}\right]
                         \end{split}
@@ -201,7 +212,7 @@
                         using vector notation.
                     </p>
                     <p>
-                        \[\vec{y} = X\vec{\beta} + \vec{\epsilon} \]
+                        \[\vec{y} = X\vec{\beta} + \vec{\epsilon}\]
                     </p>
                     </p>
                         This specification can handle an arbitrary number of
@@ -237,44 +248,54 @@ plt.scatter(x, y, s=35, alpha=0.85, color='#328E82')
                     </p>
                     <p>
                         The "best" line is usually thought of as the one that
-                        <em>minimizes</em> the distance between it and the data
-                        points. Typically, the distance that is minimized is the
-                        sum of the squared residuals. Residuals are the
+                        <em>minimizes</em> the vertical distance between it and
+                        the data points. Typically, the distance that is
+                        minimized is the sum of the squared residuals. This is
+                        the ordinary least squares estimation. Residuals are the
                         difference between each \(y_i\) and its estimated (or
-                        fitted) value, \(\hat{y_i}\). In vector notation,
-                        these can be written as \(\vec{y}\) and
-                        \(\hat{\vec{y}}\), respectively. The idea is to find
-                        values of \(\beta_0\) and \(\beta_1\) that minimize:
-                        \[ \sum_{i=1}^n (y_i - \hat{y_i})^2\]
+                        fitted) value, \(\hat{y}_i\). In vector notation, these
+                        can be written as \(\vec{y}\) and \(\hat{\vec{y}}\),
+                        respectively. The idea is to find values of \(\beta_0\)
+                        and \(\beta_1\) that minimize:
+                        \[\sum_{i=1}^n (y_i - \hat{y}_i)^2\]
                     </p>
                     <p>
-                        A side note before we continue. The terms "errors" and
-                        "residuals" are often used as synonyms, unfortunately.
-                        In reality, they are quite distinct. Errors are a
-                        population-level concept and are unobservable.
-                        Residuals, on the other hand, are sample-specific and
-                        are computed from the data when we estimate the
-                        \(\beta\)s.
+                        The terms "errors" and "residuals" are often used as
+                        synonyms, unfortunately. In reality, they are quite
+                        distinct. Errors are a population-level concept and are
+                        unobservable. Residuals, on the other hand, are
+                        sample-specific and are computed from the data when we
+                        estimate the \(\beta\)s.
                     </p>
                     <p>
-                        Back to estimating our \(\beta\)s. In the case of simple
-                        linear regression, the estimated slope is
-                        \[ \hat{\beta_1} = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^n (x_i - \bar{x})^2} = \frac{cov(x_i, y_i)}{var(x_i)}\]
-                        and the estimated \(y\)-intercept is
-                        \[ \hat{\beta_0} = \bar{y} - \hat{\beta_1}\bar{x} \]
+                        Recall that we can specify the model for the data above
+                        as \(\vec{y} = X\vec{\beta} + \vec{\epsilon}\). From
+                        this, we can use matrix algebra to estimate the "best"
+                        line.
                     </p>
                     <p>
-                        Using NumPy, we can calculate these values as follows.
+                        \[\hat{\vec{\beta}} = (X^T X)^{-1} X^T \vec{y}\]
+                    </p>
+                    <p>
+                        Using NumPy, we can estimate the parameter vector as
+                        follows.
                     </p>
 <pre>
-b1 = np.cov(x, y, bias=1)[0,1] / np.var(x)
-b0 = y.mean() - b1*x.mean()
+import numpy.linalg as npl
+
+ones = np.ones(len(x))
+X = np.column_stack((ones, x))
+b = npl.inv(X.T.dot(X)).dot(X.T).dot(y)
 
 </pre>
                     <p>
-                        This results in the following regression line, in which
-                        the sum of the squared distances between the data
-                        points and the line have been minimized.
+                        Here, \(b\) is the estimated \(\hat{\vec{\beta}}\) with
+                        values <font face="courier new">[-0.08396926,
+                        1.10769145]</font>. These represent \(\hat{\beta}_0\)
+                        and \(\hat{\beta}_1\), respectively. This results in the
+                        following regression line, in which is the sum of the
+                        squared distances between the data points and the line
+                        have been minimized.
                     </p>
                     <p>
                         <center>
@@ -283,11 +304,70 @@ b0 = y.mean() - b1*x.mean()
                         </center>
                     </p>
                     <p>
-                        To solve for \(\vec{\beta}\) in the case multiple linear
-                        regression....
+                        For this approach to work, \(X^T X\) must be invertible
+                        or nonsingular. This means that the columns in \(X\)
+                        must be linearly <em>independent</em>. If this isn't the
+                        case&mdash;that is, if \(X^T X\) is <em>not</em>
+                        invertible&mdash;then there will be an infinite number
+                        of solutions for \(\hat{\vec{\beta}}\).
+                    </p>
+                    <h3>The General Linear Model</h3>
+                    <p>
+                        "The term <em>general linear model</em> refers to a
+                        linear model of form \(\vec{y} = X\vec{\beta} +
+                        \vec{\epsilon}\)" (Poline and Brett). It's "general" in
+                        the sense that the data in \(X\) can be continuous,
+                        discrete, or even binary (dummy). The errors,
+                        \(\vec{\epsilon}\), are assumed to be independent and
+                        identically distributed with a zero mean and
+                        \(\sigma^2\) variance. General linear models need not
+                        only describe a single \(y\). That is, they can also
+                        cover multivariate models.
+                    </p>
+                    <h3>Final Thoughts</h3>
+                    <p>
+                        We've seen how to construct simple and multiple linear
+                        regression models using matrix notation and how to
+                        estimate the parameters using NumPy. These models are
+                        useful and are used often for describing the
+                        relationships between variables.
                     </p>
                     <p>
-                        \[ \hat{\vec{\beta}} = (X^T X)^{-1} X^T \vec{y}\]
+                        The following sources were invaluable for my
+                        understanding of these concepts.
+                        <font size="2">
+                            <ol>
+                                <li>
+                                    Millman, Jarrod. <a href=
+                                    "http://www.jarrodmillman.com/rcsds/lectures/glm_intro.html"
+                                    target="_blank">"Introduction to the general
+                                    linear model"</a>
+                                </li>
+                                <li>
+                                    Kiebel, S.J and A.P. Holmes. <a href=
+                                    "http://www.fil.ion.ucl.ac.uk/spm/doc/books/hbf2/pdfs/Ch7.pdf"
+                                    target="_blank">"The general linear model"</a>
+                                </li>
+                                <li>
+                                    Penn State, STAT 501. <a href=
+                                    "https://onlinecourses.science.psu.edu/stat501/node/382"
+                                    target="_blank">"A Matrix Formulation of the
+                                    Multiple Regression Model"</a>
+                                </li>
+                                <li>
+                                    Poline, Jean-Baptiste and Matthew Brett. <a
+                                    href="http://matthew.dynevor.org/_downloads/does_glm_love.pdf"
+                                    target="_blank">"The General Linear Model
+                                    and fMRI: does love last forever?"</a>
+                                </li>
+                                <li>
+                                    Wooldridge, Jeffrey M. <a href=
+                                    "http://www.amazon.com/Introductory-Econometrics-Modern-Approach-Economics/dp/1111531048"
+                                    target="_blank">"Introductory
+                                    Econometrics: A Modern Approach"
+                                </li>
+                            </ol>
+                        </font>
                     </p>
 
                 </section>
