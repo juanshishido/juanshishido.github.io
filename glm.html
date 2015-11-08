@@ -97,10 +97,12 @@
                         <em>other</em> factors that affect \(y\). If the error
                         term is excluded, the implication is that the
                         relationship is exact or <em>deterministic</em>.
-                        A <em>stochastic</em> relationship, on the other hand,
-                        is implied when the error term is included. For most, if
-                        not all, applications of regression, the relationship is
-                        stochastic.
+                        On the other hand, if we include the error term, we
+                        imply that the relationship also contains a
+                        <em>stochastic</em> component. For most, if not all,
+                        applications of regression, the relationship between
+                        the dependent and independent variables includes both
+                        deterministic and stochastic parts.
                     </p>
                     <p>
                         The actual \(\beta\) values in the population are
@@ -120,98 +122,91 @@
                         slope&mdash;the one from the population equation that
                         represents the "true" line.
                     </p>
-                    <h3>Matrix Form</h3>
-                    <p>
-                        The scalar form allows us to be explicit and verbose
-                        about the regressors included in the model. However, it
-                        is often more efficient to write the equation in matrix
-                        form. To motivate the reasons why, consider the case
-                        where, for our equation above, \(i \in 1,\ldots,n\).
-                    </p>
-                    <p>
-                        \[y_1 = \beta_0 + \beta_1 x_1 + \epsilon_1\]
-                        \[y_2 = \beta_0 + \beta_1 x_2 + \epsilon_2\]
-                        \[ \vdots \]
-                        \[y_n = \beta_0 + \beta_1 x_n + \epsilon_n\]
-                    </p>
-                    <p>
-                        It becomes inefficient to out \(n\) equations. Instead,
-                        we can think of \(y_i\), \(x_i\), and \(\epsilon_i\) as
-                        being vectors with \(n\) values. For example, \(y_i\)
-                        can be written as \(\vec{y}\). Our equation becomes:
-                    </p>
-                    <p>
-                        \[\vec{y} = \beta_0 + \beta_1 \vec{x} + \vec{\epsilon}\]
-                    </p>
-                    <p>
-                        Using this notation, the \(\beta\) values are scalars.
-                        However, with what we've described thus far, \(\beta_0\)
-                        doesn't have a vector of values to be multiplied with.
-                        So, we add a vector of ones of length \(n\).
-                    </p>
-                    <p>
-                        Our <em>system</em> of \(n\) equations can be
-                        represented as the following matrix addition equation.
-                    </p>
-                    <p>
-                        \begin{split}
-                            \left[\begin{matrix}y_1\\ \vdots\\ y_n\end{matrix}\right] =
-                            \beta_0 \left[\begin{matrix}1\\ \vdots\\ 1\end{matrix}\right] +
-                            \beta_1 \left[\begin{matrix}x_1\\ \vdots\\ x_n\end{matrix}\right] +
-                            \left[\begin{matrix}\epsilon_1\\ \vdots\\ \epsilon_n\end{matrix}\right]
-                        \end{split}
-                    </p>
-                    <p>
-                        We can restate this in terms of matrix multiplication.
-                    </p>
-                    <p>
-                        \begin{split}
-                            \left[\begin{matrix}y_1\\ \vdots\\ y_n\end{matrix}\right] =
-                            \left[\begin{matrix}1 & x_1\\ \vdots & \vdots\\ 1 & x_n\end{matrix}\right]
-                            \left[\begin{matrix}\beta_0\\ \beta_1\end{matrix}\right] +
-                            \left[\begin{matrix}\epsilon_1\\ \vdots\\ \epsilon_n\end{matrix}\right]
-                        \end{split}
-                    </p>
-                    <p>
-                        Here, we've simply combined the vector of ones and
-                        \(x_i\) into a matrix, which we refer to as \(X\),
-                        called the <em>design matrix</em>, and
-                        combined the \(\beta\)s into a column vector, which
-                        we refer to as \(\vec{\beta}\), called the <em>parameter
-                        vector</em>. In this example, \(X\) is an
-                        \(n \times p\) matrix and \(\vec{\beta}\) can be thought
-                        of as a \(p \times 1\) matrix. Because the number of
-                        columns in \(X\) equals the number of rows in
-                        \(\vec{\beta}\), they can be multiplied.
-                    </p>
-                    <p>
-                        This can be rewritten as follows.
-                    </p>
-                    <p>
-                        \[\vec{y} = X\vec{\beta} + \vec{\epsilon} \]
-                    </p>
+
                     <h3>Multiple Regression</h3>
                     <p>
                         Often, outcomes for our variable of interest, \(y\),
-                        depend on two or more predictors. When specifying it
-                        this way, it is referred to as a <em>multiple</em>
-                        linear regression model, which, for the case of two
-                        variables, can be written as (in scalar form):
+                        depend on two or more predictors. This is referred to as
+                        <em>multiple</em> linear regression model, which, for
+                        the case of two variables, can be written as:
                     </p>
                     <p>
                         \[y_i = \beta_0 + \beta_1 x_{1i} + \beta_2 x_{2i} + \epsilon_i\]
                     </p>
                     <p>
                         As you might imagine, the scalar form gets unwiedly as
-                        the number of independent variables increases. This
-                        model, as well as those with an arbitrary number of
-                        parameters, can still be expressed in matrix form.
+                        the number of independent variables increases. To deal
+                        with this, we introduce an alternative way to express
+                        our model.
+                    </p>
+                    <h3>Matrix Form</h3>
+                    <p>
+                        While the scalar form allows us to be explicit about
+                        the regressors included in the model, it is often more
+                        efficient to write the equation in matrix form. To
+                        motivate the reasons why, consider the case where, for
+                        our equation above, \(i = 1, 2, \ldots,n\).
                     </p>
                     <p>
-                        \[\vec{y} = X\vec{\beta} + \vec{\epsilon}\]
+                        \[y_1 = \beta_0 + \beta_1 x_{11} + \beta_2 x_{21} + \epsilon_1\]
+                        \[y_2 = \beta_0 + \beta_1 x_{12} + \beta_2 x_{22} + \epsilon_2\]
+                        \[ \vdots \]
+                        \[y_n = \beta_0 + \beta_1 x_{1n} + \beta_2 x_{2n} + \epsilon_n\]
                     </p>
-                        For each parameter, \(p\), add a column to \(X\) and an
-                        element to \(\vec{\beta}\).
+                    <p>
+                        Our <em>system</em> of \(n\) equations can, instead, be
+                        represented in terms of matrix addition. Note that we've
+                        included a vector of ones of length \(n\), which we'll
+                        call \(x_0\), that we multiply with \(\beta_0\).
+                    </p>
+                    <p>
+                        \begin{split}
+                            \left[\begin{matrix}y_1\\ \vdots\\ y_n\end{matrix}\right] =
+                            \beta_0 \left[\begin{matrix}1 \\ \vdots\\ 1\end{matrix}\right] +
+                            \beta_1 \left[\begin{matrix}x_{11}\\ \vdots\\ x_{1n}\end{matrix}\right] +
+                            \beta_2 \left[\begin{matrix}x_{21}\\ \vdots\\ x_{2n}\end{matrix}\right] +
+                            \left[\begin{matrix}\epsilon_1\\ \vdots\\ \epsilon_n\end{matrix}\right]
+                        \end{split}
+                    </p>
+                    <p>
+                        This can be restated in terms of matrix multiplication.
+                    </p>
+                    <p>
+                        \begin{split}
+                            \left[\begin{matrix}y_1\\ \vdots\\ y_n\end{matrix}\right] =
+                            \left[\begin{matrix}1 & x_{11} & x_{21}\\ \vdots & \vdots & \vdots \\ 1 & x_{1n} & x_{2n}\end{matrix}\right]
+                            \left[\begin{matrix}\beta_0\\ \beta_1\\ \beta_2\end{matrix}\right] +
+                            \left[\begin{matrix}\epsilon_1\\ \vdots\\ \epsilon_n\end{matrix}\right]
+                        \end{split}
+                    </p>
+                    <p>
+                        Here, we've simply combined the \(x_0\), \(x_1\), and
+                        \(x_2\) into a matrix, which we refer to as \(X\),
+                        called the <em>design matrix</em>, and
+                        combined the \(\beta\)s into a column vector, which
+                        we refer to as \(\vec{\beta}\), called the <em>parameter
+                        vector</em>. In this example, \(X\) is an
+                        \(n \times p\) matrix and the column vector
+                        \(\vec{\beta}\) can be thought of as a \(p \times 1\)
+                        matrix, where \(p = 3\). Because the number of
+                        columns in \(X\) equals the number of rows in
+                        \(\vec{\beta}\), they can be multiplied, resulting in an
+                        \(n \times 1\) column vector. This is the deterministic
+                        portion of our model, which, when added to the
+                        stochastic component, \(\vec{\epsilon}\), results in
+                        \(\vec{y}\).
+                    </p>
+                    <p>
+                        The matrix form of our model can be rewritten compactly
+                        using vector notation.
+                    </p>
+                    <p>
+                        \[\vec{y} = X\vec{\beta} + \vec{\epsilon} \]
+                    </p>
+                    </p>
+                        This specification can handle an arbitrary number of
+                        parameters. For each parameter, \(p\), add a column to
+                        \(X\) and an element to \(\vec{\beta}\).
                     </p>
                     <h3>Solving</h3>
                     <p>
