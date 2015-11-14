@@ -1,7 +1,10 @@
 // SCATTER
 // Scatter plot options
-var canvas_width = 500;
-var canvas_height = 500;
+var canvas_width = parseInt(d3.select('#scatter-chart').style('width'), 10)*0.9
+var canvas_height = canvas_width
+
+// var canvas_width = 500;
+// var canvas_height = 500;
 var opacity = 1;
 var padding = 75;  // for chart edges
 var circle_radius = 3;
@@ -139,7 +142,7 @@ d3.csv("./data/scatter.csv", function(data) {
                                .attr("r", 6).ease("elastic")
                 scatterTip.show(d)
            })
-           .on("mouseout", function(d) { 
+           .on("mouseout", function(d) {
                 d3.select(this).transition()
                                .duration(600)
                                .attr("r", circle_radius).ease("elastic")
@@ -208,7 +211,7 @@ d3.csv("./data/scatter.csv", function(data) {
                 legend: [10000, 15000, 20000, 25000],
                 legendColors : {
                 min : "#B2E0DA",
-                max : "#328E82" 
+                max : "#328E82"
                 },
                 domainDynamicDimension: true,
                 previousSelector: "#prev",
@@ -325,7 +328,7 @@ d3.csv("./data/scatter.csv", function(data) {
                                .attr("r", 6).ease("elastic")
                 scatterTip.show(d)
            })
-           .on("mouseout",  function(d) { 
+           .on("mouseout",  function(d) {
                 d3.select(this).transition()
                                .duration(600)
                                .attr("r", circle_radius).ease("elastic")
@@ -380,10 +383,10 @@ d3.csv("./data/scatter.csv", function(data) {
         var maxVal = d3.max(filteredData, function(d) {
                         return d3.max([d[colPositions["dj30"]], d[colPositions["wager"]]]);
                     });
-        
+
         // Update scale domains
         xScale.domain([0, maxVal]);
-        
+
         if (yLabel == "Percentage") {
             yScale.domain([0, 1]); // Max of 1 for Percentage view
         }
