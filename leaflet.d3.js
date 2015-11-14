@@ -21,7 +21,7 @@
             },
             valueFloor: undefined,
             valueCeil: undefined,
-            colorRange: ['#f7fbff', '#08306b']
+            colorRange: ['#B2E0DA', '#328E82']
         },
 
         initialize : function(options) {
@@ -121,7 +121,7 @@
                 .style('margin-left', marginLeft + 'px')
                 .style('margin-top', marginTop + 'px');
 
-            // Select the hex group for the current zoom level. This has 
+            // Select the hex group for the current zoom level. This has
             // the effect of recreating the group if the zoom level has changed
             var join = this._container.selectAll('g.hexbin')
                 .data([zoom], function(d){ return d; });
@@ -167,7 +167,7 @@
             join.transition().duration(that.options.duration)
                 .attr('fill', function(d){ return that._colorScale(that.options.value(d)); })
                 .attr('opacity', that.options.opacity);
-    
+
             // Enter - establish the path, the fill, and the initial opacity
             join.enter().append('path').attr('class', 'hexbin-hexagon')
                 .attr('d', function(d){ return 'M' + d.x + ',' + d.y + that._hexLayout.hexagon(); })
@@ -211,7 +211,7 @@
             return { min: bounds[0], max: bounds[1] };
         },
 
-        /* 
+        /*
          * Setter for the data
          */
         data : function(data) {
