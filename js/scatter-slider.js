@@ -1,6 +1,9 @@
 // SCATTER
 // Scatter plot options
-var canvas_width = parseInt(d3.select('#scatter-chart').style('width'), 10)*0.9
+var canvas_width = parseInt(d3.select('#scatter-chart').style('width'), 10)
+if (canvas_width > 400) {
+    canvas_width = canvas_width * 0.9
+}
 var canvas_height = canvas_width
 
 // var canvas_width = 500;
