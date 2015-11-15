@@ -48,6 +48,29 @@ em {
     fill: #7c8081;
 }
 
+/* Range Input */
+input[type=range] {
+    -webkit-appearance: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+    height: 5px;
+    background: LightGray;
+    border: none;
+    border-radius: 3px;
+}
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: #999;
+    margin-top: -5px;
+}
+input[type=range]:focus {
+    outline: none;
+}
+
 /* Button */
 .button-small {
     display: inline-block;
