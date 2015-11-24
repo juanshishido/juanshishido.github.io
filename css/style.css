@@ -36,6 +36,12 @@ em {
     font-style: italic;
 }
 
+/* ul */
+ul.s {
+    list-style-type: square;
+    margin-left: 5%;
+}
+
 /* Slider */
 .slider-width {
     margin-left: 5%;
