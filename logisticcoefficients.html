@@ -1,0 +1,210 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Logistic Regression Coefficients</title>
+
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery.scrolly.min.js"></script>
+        <script src="js/jquery.scrollgress.min.js"></script>
+        <script src="js/skel.min.js"></script>
+        <script src="js/skel-layers.min.js"></script>
+        <script src="js/init.js"></script>
+        <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+
+        <noscript>
+            <link rel="stylesheet" href="css/skel.css" />
+            <link rel="stylesheet" href="css/style.css" />
+            <link rel="stylesheet" href="css/style-wide.css" />
+            <link rel="stylesheet" href="css/style-noscript.css" />
+        </noscript>
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script src="js/smoothscroll.js"></script>
+
+        <link rel="stylesheet" type="text/css" media="screen"
+        href="http://cdnjs.cloudflare.com/ajax/libs/fancybox/1.3.4/jquery.fancybox-1.3.4.css" />
+        <style type="text/css">
+            a.fancybox img {
+                border: none;
+            }
+        </style>
+
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-68428630-1', 'auto');
+            ga('send', 'pageview');
+
+        </script>
+
+    </head>
+
+
+    <body class="index">
+
+       <!-- Header -->
+        <header id="header" style="position: fixed; top: 0px; left: 0px; right: 0px; z-index: 1030;">
+            <h1 id="logo"><a href="index.html">Home</a></h1>
+            <nav id="nav">
+                <ul>
+                    <li><a href="#top" class="smoothScroll">^</a></li>
+                    <li><a href="#contact" class="smoothScroll">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Main -->
+        <article id="main">
+
+            <div id="top">
+                <section class="wrapper style3 container">
+
+                    <header>
+                        <h2><center>Interpreting Logistic Regression Coefficients</center></h2>
+                    </header>
+
+                    <p>
+                        I was recently asked to interpret coefficient estimates
+                        from a logistic regression model. It turns out, I'd
+                        forgotten how to. I knew the log odds ratio was
+                        involved, but I couldn't find the words to explain it.
+                        Part of that has to do with my recent focus on
+                        prediction accuracy rather than inference. Still, it's
+                        an important concept to understand and this is a good
+                        opportunity to refamiliarize myself with it.
+                    </p>
+                    <p>
+                        Logistic regression models are used when the outcome of
+                        interest is binary. (There are ways to handle
+                        multi-class classification, too.) The predicted values,
+                        which are between zero and one, can be interpreted as
+                        probabilities for being in the positive class&mdash;the
+                        one labeled <code>1</code>.
+                    </p>
+                    <p>
+                        To model the probability when \(y\) is binary&mdash;that
+                        is, \(p(X) = p(y=1 \mid X)\)&mdash;we use the logistic
+                        function defined as:
+                    </p>
+                    <p>
+                        \[p(X) = \frac{e^t}{1 + e^t}\text{,}\]
+                    </p>
+                    <p>
+                        where \(t\) is some function of the covariates, \(X\).
+                        Let's define \(t\) using matrix notation such that
+                        \(t = X\beta\), where \(\beta\) is actually
+                        \(\vec{\beta}\).
+                    </p>
+                    <p>
+                        This can be rewritten as:
+                    </p>
+                    <p>
+                        \[\frac{p(X)}{1-p(X)} = e^{X\beta}\text{.}\]
+                    </p>
+                    <p>
+                        This is known as the <em>odds</em> and can be between
+                        \(0\) and \(\infty\).
+                    </p>
+                    <p>
+                        Finally, we can take the log of both sides to get:
+                    </p>
+                    <p>
+                        \[\log \left(\frac{p(X)}{1-p(X)}\right) = X\beta\text{.}\]
+                    </p>
+                    <p>
+                        The left-hand side is known as the log-odds or logit.
+                    </p>
+                    <p>
+                        Before we consider the coefficient estimates, let's take
+                        a moment to discuss odds. The odds of an event is the
+                        probability of that event divided by its complement:
+                    </p>
+                    <p>
+                        \[\frac{p}{1 - p}\text{.}\]
+                    </p>
+                    <p>
+                        For an event with probability 0.75, the odds are:
+                    </p>
+                    <p>
+                        \[\frac{0.75}{1 - 0.75} = \frac{0.75}{0.25} = 3\text{.}\]
+                    </p>
+                    <p>
+                        This means that the event is three times as likely to
+                        occur than not. As another example, consider an event
+                        with a 50% chance of happening. In this case, the odds
+                        are one to one&mdash;there is an equal chance of either
+                        event happening, which makes sense given the
+                        probability.
+                    </p>
+
+                </section>
+            </div>
+        </article>
+
+        <!-- Footer -->
+        <div id="contact">
+            <footer id="footer">
+
+                <h2><strong>Contact</strong></h2>
+                <ul class="icons">
+                    <li>
+                        <a href="http://www.linkedin.com/in/juanshishido/"
+                        class="icon circle fa-linkedin" target="_blank">
+                        <span class="label">LinkedIn</span></a>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/juanshishido"
+                        class="icon circle fa-twitter" target="_blank">
+                        <span class="label">Twitter</span></a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/juanshishido"
+                        class="icon circle fa-github" target="_blank">
+                        <span class="label">Github</span></a>
+                    </li>
+                </ul>
+
+                <ul class="copyright">
+                    <li>
+                        <a href="index.html" class="smoothScroll">Juan Shishido</a>
+                    </li>
+                    <li>Design:
+                        <a href="http://html5up.net" target="_blank">HTML5 UP</a>
+                    </li>
+                </ul>
+
+            </footer>
+        </div>
+
+        <script type="text/javascript"
+        src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript"
+        src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script type="text/javascript"
+        src="http://cdnjs.cloudflare.com/ajax/libs/fancybox/1.3.4/jquery.fancybox-1.3.4.pack.min.js"></script>
+        <script type="text/javascript">
+            $(function($){
+                var addToAll = false;
+                var gallery = false;
+                var titlePosition = 'over';
+                $(addToAll ? 'img' : 'img.fancybox').each(function(){
+                    var $this = $(this);
+                    var title = $this.attr('title');
+                    var src = $this.attr('data-big') || $this.attr('src');
+                    var a = $('<a href="#" class="fancybox"></a>').attr('href', src).attr('title', title);
+                    $this.wrap(a);
+                });
+                if (gallery)
+                    $('a.fancybox').attr('rel', 'fancyboxgallery');
+                $('a.fancybox').fancybox({
+                    titlePosition: titlePosition
+                });
+            });
+            $.noConflict();
+        </script>
+
+    </body>
+</html>
