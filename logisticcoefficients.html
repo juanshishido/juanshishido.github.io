@@ -66,6 +66,7 @@
                         <h2><center>Interpreting Logistic Regression Coefficients</center></h2>
                     </header>
 
+                    <h3>Intro</h3>
                     <p>
                         I was recently asked to interpret coefficient estimates
                         from a logistic regression model. It turns out, I'd
@@ -84,6 +85,8 @@
                         probabilities for being in the positive class&mdash;the
                         one labeled <code>1</code>.
                     </p>
+
+                    <h3>Logistic Function to Logit</h3>
                     <p>
                         To model the probability when \(y\) is binary&mdash;that
                         is, \(p(X) = p(y=1 \mid X)\)&mdash;we use the logistic
@@ -117,6 +120,8 @@
                         The left-hand side is known as the log-odds or
                         <em>logit</em>.
                     </p>
+
+                    <h3>Odds</h3>
                     <p>
                         Before we consider the coefficient estimates, let's take
                         a moment to discuss odds. The odds of an event is the
@@ -138,6 +143,92 @@
                         are one to one&mdash;there is an equal chance of either
                         event happening, which makes sense given the
                         probability.
+                    </p>
+
+                    <h3>Coefficients</h3>
+                    <p>
+                        Let's look at an example using Python. For this, we'll
+                        load <code>ccard</code> data set from Statsmodels. (Note:
+                        all of the code for this example can be found
+                        <a href="https://gist.github.com/juanshishido/566e57652ade75bdbce06952a148cb49"
+                        target="_blank">here</a>.)
+                    </p>
+<pre>
+import numpy as np
+import statsmodels.api as sm
+
+df = sm.datasets.ccard.load_pandas().data
+
+</pre>
+                    <p>
+                        In this example, we'll use age and income to predict
+                        home ownership. The income variable, <code>INCOME</code>,
+                        is in 10,000s of dollars. (Note that we also add an
+                        intercept term.)
+                    </p>
+                    <p>
+                        Let's fit the model and view the summary output.
+                    </p>
+<pre>
+model = sm.Logit(df.OWNRENT, df[['intercept', 'AGE', 'INCOME']])
+result = model.fit()
+result.summary()
+
+Logit Regression Results
+==============================================================================
+Dep. Variable:                OWNRENT   No. Observations:                   72
+Model:                          Logit   Df Residuals:                       69
+Method:                           MLE   Df Model:                            2
+Date:                Mon, 04 Apr 2016   Pseudo R-squ.:                  0.2561
+Time:                        23:38:14   Log-Likelihood:                -35.434
+converged:                       True   LL-Null:                       -47.633
+             LLR p-value:                 5.039e-06
+==============================================================================
+coef    std err          z      P>|z|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------
+intercept     -6.0978      1.570     -3.885      0.000        -9.174    -3.021
+AGE            0.1056      0.046      2.300      0.021         0.016     0.196
+INCOME         0.6411      0.246      2.605      0.009         0.159     1.123
+==============================================================================
+
+</pre>
+                    <p>
+                        The estimated coefficients are the log odds. By
+                        exponentiating these values, we can calculate the odds,
+                        which are easier to interpret.
+                    </p>
+<pre>
+np.exp(result.params)
+
+intercept    0.002248
+AGE          1.111398
+INCOME       1.898642
+dtype: float64
+
+</pre>
+                    <p>
+                        The odds for both age and income are above one, meaning
+                        that they are positively associated with home ownership,
+                        at least in this small data set. Let's focus on income.
+                        We can interpret this as follows. For a $10,000 increase
+                        in income&mdash;recall that this corresponds to one
+                        unit&mdash;we expect the odds of home ownership to
+                        increase by almost two times (90%), holding everything
+                        else constant.
+                    </p>
+
+                    <h3>Final Thoughts</h3>
+                    <p>
+                        Interpreting logistic regression coefficients amounts to
+                        calculating the odds, which corresponds to the
+                        likelihood that event will occur, relative to it not
+                        occurring.
+                    </p>
+                    <p>
+                        Special thanks to UCLA's <a
+                        href="http://www.ats.ucla.edu/stat/mult_pkg/faq/general/odds_ratio.htm"
+                        target="_blank">Institute for Digital Research and
+                        Education</a> for the excellent post on this topic.
                     </p>
 
                 </section>
