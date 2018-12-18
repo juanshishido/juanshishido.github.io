@@ -1692,7 +1692,7 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Federal, state, and local governments have started making more of their data publicly available. This is part of the so-called open data movement. Application Programming Interfaces (APIs), which many institutions have begun supporting, allow researchers and other individuals interested in working with and analyzing data to access information, often large amounts of it, programmatically.</p>
 <p><a href="https://data.sfgov.org/" target="_blank">DataSF</a> is the open data portal for the city (and county) of San Francisco.</p>
-<p>In this notebook, I will access incident reports from the San Francisco Police Department (SFPD), focusing on traffic-related entries. I will show how to plot the data using the <a href="http://stanford.edu/~mwaskom/software/seaborn/" target="_blank">Seaborn</a> library. I will also plot the traffic incidents for the past three months on a Leaflet map.</p>
+<p>In this notebook, I will access incident reports from the San Francisco Police Department (SFPD), focusing on traffic-related entries. I will show how to plot the data using the <a href="https://stanford.edu/~mwaskom/software/seaborn/" target="_blank">Seaborn</a> library. I will also plot the traffic incidents for the past three months on a Leaflet map.</p>
 </div>
 </div>
 </div>
@@ -1711,8 +1711,8 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Using the <font face="courier new">requests</font> module, we access the API with the SFPD data. We specify, using the limit parameter, the maximum number of records that should be returned. It is important to read the API documentation for information on limits, appropriate uses, and the various available options. The documentation for this specific data source can be found <a href="http://dev.socrata.com/foundry/#/data.sfgov.org/tmnf-yvry" target="_blank">here</a>. It is important to note that this data is updated daily, so your results will vary.</p>
-<p>The data will be returned in a format known as <a href="http://www.json.org/" target="_blank">JSON</a>, which stands for JavaScript Object Notation, and will be stored in an object called <font face="courier new">response</font>. Depending on your connection, this may take a few minutes.</p>
+<p>Using the <font face="courier new">requests</font> module, we access the API with the SFPD data. We specify, using the limit parameter, the maximum number of records that should be returned. It is important to read the API documentation for information on limits, appropriate uses, and the various available options. The documentation for this specific data source can be found <a href="https://dev.socrata.com/foundry/#/data.sfgov.org/tmnf-yvry" target="_blank">here</a>. It is important to note that this data is updated daily, so your results will vary.</p>
+<p>The data will be returned in a format known as <a href="https://www.json.org/" target="_blank">JSON</a>, which stands for JavaScript Object Notation, and will be stored in an object called <font face="courier new">response</font>. Depending on your connection, this may take a few minutes.</p>
 </div>
 </div>
 </div>
@@ -1724,7 +1724,7 @@ In&nbsp;[1]:
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="kn">import</span> <span class="nn">requests</span><span class="o">,</span> <span class="nn">json</span><span class="o">,</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
-<span class="n">url</span> <span class="o">=</span> <span class="s">&#39;http://data.sfgov.org/resource/tmnf-yvry.json?$limit=50000&#39;</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">&#39;https://data.sfgov.org/resource/tmnf-yvry.json?$limit=50000&#39;</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 </pre></div>
 
@@ -4015,7 +4015,7 @@ In&nbsp;[9]:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>To make plots using <a href="http://matplotlib.org/" target="_blank">matplotlib</a>, you must first enable IPython&#39;s matplotlib mode. To do this, run the %matplotlib <a href="http://ipython.org/ipython-doc/dev/interactive/tutorial.html" target="_blank">magic</a> command to enable plotting in the current notebook.</p>
+<p>To make plots using <a href="https://matplotlib.org/" target="_blank">matplotlib</a>, you must first enable IPython&#39;s matplotlib mode. To do this, run the %matplotlib <a href="https://ipython.org/ipython-doc/dev/interactive/tutorial.html" target="_blank">magic</a> command to enable plotting in the current notebook.</p>
 <p>For more information, see: <a href="http://nbviewer.ipython.org/github/ipython/ipython/blob/1.x/examples/notebooks/Part%203%20-%20Plotting%20with%20Matplotlib.ipynb" target="_blank">Plotting with Matplotlib</a>.</p>
 </div>
 </div>
