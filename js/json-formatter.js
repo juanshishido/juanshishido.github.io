@@ -7,7 +7,8 @@ function processJSON() {
     // replace smart quotes
     var input = document.getElementById("inputTextarea").value
       .replace(/[\u2018\u2019]/g, "'")
-      .replace(/[\u201C\u201D]/g, '"');
+      .replace(/[\u201C\u201D]/g, '"')
+      .replace(/'/g, '"');
     var obj = JSON.parse(input);
     var str = JSON.stringify(obj, null, 2)
     printArea.innerHTML = str;
